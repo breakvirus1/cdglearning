@@ -18,7 +18,7 @@ def foobar(input_info)
     end
 end
 
-puts("Введите 2 числа через пробел:")
+puts("Введите 2 числа через пробел: ")
 
 foobar(gets)
 
