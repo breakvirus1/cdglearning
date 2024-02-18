@@ -1,26 +1,4 @@
 require './task-1'
-require 'csv'
-module CashMachine
-  attr_reader :data_array
-
-  def initialize
-    if File.exist?('data.csv')
-      data = CSV.open('data.csv', 'a')
-      data_array = data.each.to_a
-    else
-      puts('база пуста. оставьте первый пост:')
-      data_array[0] = gets.chomp
-      data = File.write('data.csv', rows.map(&:to_csv).join)
-    end
-  end
-
-  def create_post
-    initialize
-    data_array.push(gets.chomp)
-    puts(data_array)
-    File.write(data, rows.map(&:to_csv).join)
-  end
-end
 
 module Resource
   def connection(routes)
@@ -52,27 +30,27 @@ class PostsController
   include CashMachine
   def initialize
     @posts = []
-    # @balance = balance
+    @filename = 'data.txt'
   end
 
   def index
-    CashMachine.create_post
+    output_file
   end
 
   def show
-    puts 'show'
+    show_post
   end
 
   def create
-    puts 'create'
+    create_post
   end
 
   def update
-    puts 'update'
+    update_post
   end
 
   def destroy
-    puts 'destroy'
+    destroy_post
   end
 end
 
@@ -86,7 +64,7 @@ class Router
 
     loop do
       print 'Choose resource you want to interact (1 - Posts, 2 - Comments, q - Exit): '
-      choise = gets.chomp
+      choise = '1' # gets.chomp
 
       PostsController.connection(@routes['posts']) if choise == '1'
       break if choise == 'q'
