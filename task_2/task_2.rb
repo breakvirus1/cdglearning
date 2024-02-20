@@ -27,4 +27,4 @@ class Task_2_class
 end
 
 puts("Введите количество кроликов: ")
-Task_2_class.new.add_bunnies(gets.to_i)
+Task_2_class.new.add_bunnies(gets.to_i)#создал экземпляр класса
