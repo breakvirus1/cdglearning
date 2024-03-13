@@ -7,7 +7,7 @@ class CashMachine
       @balance = File.open('balance.txt').readlines[0].to_i
     else
       @balance = 100.to_i #добавляю коммент для newbranchtest
-      balance_file = File.new('balance.txt', 'w')
+      balance_file = File.new('balance.txt', 'w') #еще коммент
       File.write(balance_file, balance)
     end
   end
